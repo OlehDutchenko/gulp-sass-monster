@@ -10,7 +10,7 @@ Contributions welcome!
 
 **Before spending lots of time on something, ask for feedback on your idea first!**
 
-Please search [issues](https://github.com/dutchenkoOleg/gulp-ejs-monster/issues) and [pull requests](https://github.com/dutchenkoOleg/gulp-ejs-monster/pulls) before adding something new to avoid duplicating
+Please search [issues](https://github.com/dutchenkoOleg/gulp-sass-monster/issues) and [pull requests](https://github.com/dutchenkoOleg/gulp-sass-monster/pulls) before adding something new to avoid duplicating
 efforts and conversations.
 
 Also, you should read the [Change log](./CHANGELOG.md) and the [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md).

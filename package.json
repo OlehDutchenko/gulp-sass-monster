@@ -1,7 +1,7 @@
 {
   "name": "gulp-sass-monster",
   "version": "0.0.1",
-  "description": "",
+  "description": "Gulp plugin for node-sass with steroids. The project is inspired by gulp-sass",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
