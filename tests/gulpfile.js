@@ -35,6 +35,12 @@ gulp.task('clear', function (done) {
 	return del(dest).then(paths => done(), error => console.log(error.message));
 });
 
+gulp.task('tmp', function () {
+	return gulp.src(src)
+		.pipe(gulpSassMonster({}, true))
+		.pipe(gulp.dest('./tmp/'));
+});
+
 for (let preset in options) {
 	let config = options[preset];
 	let taskName = `preset-${preset}`;
@@ -43,11 +49,12 @@ for (let preset in options) {
 
 	gulp.task(taskName, function () {
 		return gulp.src(src)
+			.pipe(gulpSassMonster(config))
 			.on('data', file => {
 				file.extname = '.css';
 			})
 			.pipe(gulp.dest(taskDest));
-	})
+	});
 }
 
 gulp.task('sass', gulp.series(...series));
