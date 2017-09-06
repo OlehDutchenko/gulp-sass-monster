@@ -4,6 +4,8 @@
   "description": "Gulp plugin for node-sass with steroids. The project is inspired by gulp-sass",
   "main": "index.js",
   "scripts": {
+    "render-node": "node ./tests/node-sass.js",
+    "render-gulp": "cd tests && gulp sass",
     "happiness": "happiness \"./*.js\" \"./utils/**/*.js\" --verbose --fix | snazzy",
     "test": "npm run happiness"
   },
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "del": "^3.0.0",
+    "glob": "^7.1.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-jsdoc3": "^1.0.1",
     "gulp-mocha": "^4.3.1",

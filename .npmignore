@@ -22,4 +22,4 @@ docs/
 tests/
 examples/
 .travis.yml
-gulpfile.js
+tests/gulpfile.js
