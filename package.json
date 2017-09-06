@@ -8,7 +8,7 @@
     "render-gulp": "cd tests && gulp sass",
     "compare": "cd tests && gulp compare-results",
     "render": "npm run render-node && npm run render-gulp && npm run compare",
-    "happiness": "happiness \"./*.js\" \"./utils/**/*.js\" --verbose --fix | snazzy",
+    "happiness": "happiness \"./*.js\" \"./utils/**/*.js\" \"./tests/**/*.js\" --global \"it\" --global \"describe\" --verbose --fix | snazzy",
     "test": "npm run happiness && npm run render"
   },
   "repository": {

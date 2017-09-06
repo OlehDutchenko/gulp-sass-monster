@@ -40,8 +40,6 @@ const errorHandler = require('./utils/error-hadler');
  */
 const pluginError = (data, options) => new gutil.PluginError(pkg.name, data, options);
 
-
-
 // ----------------------------------------
 // Public
 // ----------------------------------------
@@ -82,8 +80,7 @@ function gulpSassMonster (opts = {}, sync = false) {
 				let result = sass.renderSync(options);
 				pushFile(file, result, options, cb);
 			} catch (error) {
-				error = errorHandler(error, file);
-				return cb(error);
+				return cb(errorHandler(error, file));
 			}
 		} else {
 			sass.render(options, (error, result) => {
@@ -92,7 +89,7 @@ function gulpSassMonster (opts = {}, sync = false) {
 					return cb(error);
 				}
 				pushFile(file, result, options, cb);
-			})
+			});
 		}
 	}
 
