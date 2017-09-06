@@ -1,0 +1,24 @@
+# Logs
+logs
+*.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# IDEA
+.idea/
+examples/
+
+# temp
+tmp/
+
+# fs
+.DS_Store
+thumbs.db
+
+# workflow
+docs/
+examples/dist/
