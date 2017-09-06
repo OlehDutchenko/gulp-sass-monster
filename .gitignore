@@ -10,7 +10,7 @@ node_modules/
 
 # IDEA
 .idea/
-examples/
+tests/result
 
 # temp
 tmp/
