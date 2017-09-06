@@ -10,9 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/dutchenkoOleg/gulp-sass-monster.git"
   },
+  "engines": {
+    "node": ">=6.3.1"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Oleg Dutchenko <dutchenko.o.dev@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dutchenkoOleg/gulp-sass-monster/issues"
   },
