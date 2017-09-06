@@ -6,6 +6,8 @@
   "scripts": {
     "render-node": "node ./tests/node-sass.js",
     "render-gulp": "cd tests && gulp sass",
+    "compare": "cd tests && gulp compare-results",
+    "render": "npm run render-node && npm run render-gulp && npm run compare",
     "happiness": "happiness \"./*.js\" \"./utils/**/*.js\" --verbose --fix | snazzy",
     "test": "npm run happiness"
   },
@@ -33,6 +35,7 @@
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "del": "^3.0.0",
     "glob": "^7.1.2",
     "gulp": "github:gulpjs/gulp#4.0",

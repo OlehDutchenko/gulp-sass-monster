@@ -14,6 +14,7 @@
 const gulp = require('gulp');
 const del = require('del');
 const gulpSassMonster = require('../index');
+const mocha = require('gulp-mocha');
 
 // modules
 const options = require('./options');
@@ -22,18 +23,41 @@ const options = require('./options');
 // Private
 // ----------------------------------------
 
+const series = ['clear'];
+const dest = './gulp-results';
+const src = './scss/!(_)*.scss';
+
 // ----------------------------------------
 // Tasks
 // ----------------------------------------
 
-gulp.task('sync', function () {
-	return gulp.src('./scss/*.scss')
-		// .pipe(gulpSassMonster())
-		.pipe(gulp.dest('./gulp-results/'));
-});
-
 gulp.task('clear', function (done) {
-	return del('./gulp-results').then(paths => done(), error => console.log(error.message));
+	return del(dest).then(paths => done(), error => console.log(error.message));
 });
 
-gulp.task('sass', gulp.series('clear', 'sync'));
+for (let preset in options) {
+	let config = options[preset];
+	let taskName = `preset-${preset}`;
+	let taskDest = `${dest}/${preset}`;
+	series.push(taskName);
+
+	gulp.task(taskName, function () {
+		return gulp.src(src)
+			.on('data', file => {
+				file.extname = '.css';
+			})
+			.pipe(gulp.dest(taskDest));
+	})
+}
+
+gulp.task('sass', gulp.series(...series));
+
+gulp.task('compare-results', function () {
+	return gulp.src('./compare.js', {read: false})
+		.pipe(mocha({
+			reporter: 'spec'
+		}))
+		.once('error', () => {
+			process.exit(1);
+		});
+});

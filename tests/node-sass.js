@@ -25,7 +25,7 @@ const options = require('./options');
 // ----------------------------------------
 
 const destPath = path.resolve(path.join(__dirname, './node-results'));
-const sassFiles = glob.sync(path.join(__dirname, './scss/!(_|error)*.scss'));
+const sassFiles = glob.sync(path.join(__dirname, './scss/!(_)*.scss'));
 
 // ----------------------------------------
 // Public
@@ -35,11 +35,14 @@ del.sync(destPath);
 fs.mkdirSync(destPath);
 
 for (let preset in options) {
+	fs.mkdirSync(path.join(destPath, preset));
+
 	sassFiles.forEach(file => {
 		let filename = path.basename(file, '.scss');
-		let filepath = path.join(destPath, filename + '.css');
+		let filepath = path.join(destPath, preset, filename + '.css');
 		let config = lodash.merge({}, options[preset], {file});
 		let result = sass.renderSync(config);
+
 		fs.writeFileSync(filepath, result.css);
 	});
 }

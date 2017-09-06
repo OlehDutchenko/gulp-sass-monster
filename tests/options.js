@@ -12,6 +12,9 @@
 const options = {
 	default: {
 
+	},
+	indent: {
+
 	}
 }
 
