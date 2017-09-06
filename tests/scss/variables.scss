@@ -1,7 +1,9 @@
 $blue: #3bbfce;
+$width: 100% / 3;
 $margin: 16px;
 
 .content-navigation {
+  width: $width;
   border-color: $blue;
   color:
     darken($blue, 9%);

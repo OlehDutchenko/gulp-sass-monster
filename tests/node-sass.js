@@ -41,6 +41,12 @@ for (let preset in options) {
 		let filename = path.basename(file, '.scss');
 		let filepath = path.join(destPath, preset, filename + '.css');
 		let config = lodash.merge({}, options[preset], {file});
+
+		delete config.data;
+		if (config.sourceMap) {
+			config.outFile = filepath;
+		}
+
 		let result = sass.renderSync(config);
 
 		fs.writeFileSync(filepath, result.css);

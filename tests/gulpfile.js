@@ -13,6 +13,8 @@
 // modules
 const gulp = require('gulp');
 const del = require('del');
+const iF = require('gulp-if');
+const sourcemaps = require('gulp-sourcemaps');
 const gulpSassMonster = require('../index');
 const mocha = require('gulp-mocha');
 
@@ -35,11 +37,19 @@ gulp.task('clear', function (done) {
 	return del(dest).then(paths => done(), error => console.log(error.message));
 });
 
-gulp.task('tmp', function () {
-	return gulp.src(src)
-		.pipe(gulpSassMonster({}, true))
-		.pipe(gulp.dest('./tmp/'));
-});
+gulp.task('tmp', gulp.series(
+	function (done) {
+		return del(dest).then(paths => done(), error => console.log(error.message));
+	},
+	function () {
+		return gulp.src(src)
+			.pipe(gulpSassMonster({}, true))
+			.on('data', file => {
+				console.log(file);
+			})
+			.pipe(gulp.dest('./tmp/'));
+	}
+));
 
 for (let preset in options) {
 	let config = options[preset];
@@ -48,11 +58,11 @@ for (let preset in options) {
 	series.push(taskName);
 
 	gulp.task(taskName, function () {
+		let map = config.sourceMap;
 		return gulp.src(src)
-			.pipe(gulpSassMonster(config))
-			.on('data', file => {
-				file.extname = '.css';
-			})
+			.pipe(iF(map, sourcemaps.init()))
+			.pipe(gulpSassMonster(config, true))
+			.pipe(iF(map, sourcemaps.write(typeof map === 'string' ? map : false)))
 			.pipe(gulp.dest(taskDest));
 	});
 }

@@ -32,6 +32,7 @@ function setupOptions (opts, file) {
 
 	// set the file path for libsass
 	options.file = file.path;
+	delete options.data;
 
 	// Ensure `indentedSyntax` is true if a `.sass` file
 	if (path.extname(file.path) === '.sass') {
@@ -52,6 +53,10 @@ function setupOptions (opts, file) {
 		options.sourceMap = file.path;
 		options.omitSourceMapUrl = true;
 		options.sourceMapContents = true;
+	} else {
+		delete options.sourceMap;
+		delete options.omitSourceMapUrl;
+		delete options.sourceMapContents;
 	}
 
 	return options;
