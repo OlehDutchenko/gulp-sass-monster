@@ -9,7 +9,7 @@
     "compare": "cd tests && gulp compare-results",
     "render": "npm run render-node && npm run render-gulp && npm run compare",
     "happiness": "happiness \"./*.js\" \"./utils/**/*.js\" --verbose --fix | snazzy",
-    "test": "npm run happiness"
+    "test": "npm run happiness && npm run render"
   },
   "repository": {
     "type": "git",
