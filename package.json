@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/dutchenkoOleg/gulp-sass-monster#readme",
   "dependencies": {
-    "chalk": "^2.1.0",
     "gulp-not-supported-file": "^1.2.0",
     "gulp-util": "^3.0.8",
     "lodash": "^4.17.4",

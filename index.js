@@ -13,9 +13,6 @@
 
 // modules
 const sass = require('node-sass');
-const chalk = require('chalk');
-const path = require('path');
-const lodash = require('lodash');
 const through2 = require('through2');
 const gutil = require('gulp-util');
 const notSupportedFile = require('gulp-not-supported-file');
@@ -26,6 +23,7 @@ const pkg = require('./package.json');
 // utils
 const setupOptions = require('./utils/setup-options');
 const pushFile = require('./utils/push-file');
+const errorHandler = require('./utils/error-hadler');
 
 // ----------------------------------------
 // Private
@@ -37,6 +35,8 @@ const pushFile = require('./utils/push-file');
  * @param {Object} data
  * @param {Object} [options={}]
  * @return {PluginError}
+ * @private
+ * @sourceCode
  */
 const pluginError = (data, options) => new gutil.PluginError(pkg.name, data, options);
 
@@ -51,6 +51,7 @@ const pluginError = (data, options) => new gutil.PluginError(pkg.name, data, opt
  * @param {Object} [opts={}] - user options
  * @param {boolean} [sync=false]
  * @returns {DestroyableTransform}
+ * @sourceCode
  */
 function gulpSassMonster (opts = {}, sync = false) {
 	/**
@@ -79,12 +80,19 @@ function gulpSassMonster (opts = {}, sync = false) {
 		if (sync) {
 			try {
 				let result = sass.renderSync(options);
-				pushFile(file, result, cb);
+				pushFile(file, result, options, cb);
 			} catch (error) {
-				console.log(error);
-				error.renderFile = file.path;
-				cb(error);
+				error = errorHandler(error, file);
+				return cb(error);
 			}
+		} else {
+			sass.render(options, (error, result) => {
+				if (error) {
+					error = errorHandler(error, file);
+					return cb(error);
+				}
+				pushFile(file, result, options, cb);
+			})
 		}
 	}
 
@@ -94,6 +102,7 @@ function gulpSassMonster (opts = {}, sync = false) {
 /**
  * Plugin name
  * @type {string}
+ * @sourceCode
  */
 gulpSassMonster.pluginName = pkg.name;
 

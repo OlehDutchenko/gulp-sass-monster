@@ -25,7 +25,7 @@ const options = require('./options');
 // ----------------------------------------
 
 const destPath = path.resolve(path.join(__dirname, './node-results'));
-const sassFiles = glob.sync(path.join(__dirname, './scss/!(_)*.scss'));
+const sassFiles = glob.sync(path.join(__dirname, './scss-examples/!(_)*.scss'));
 
 // ----------------------------------------
 // Public

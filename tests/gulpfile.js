@@ -27,7 +27,7 @@ const options = require('./options');
 
 const series = ['clear'];
 const dest = './gulp-results';
-const src = './scss/!(_)*.scss';
+const src = './scss-examples/!(_)*.scss';
 
 // ----------------------------------------
 // Tasks
@@ -43,10 +43,18 @@ gulp.task('tmp', gulp.series(
 	},
 	function () {
 		return gulp.src(src)
-			.pipe(gulpSassMonster({}, true))
-			.on('data', file => {
-				console.log(file);
-			})
+			.pipe(gulpSassMonster({}))
+			.pipe(gulp.dest('./tmp/'));
+	}
+));
+
+gulp.task('sass-errors', gulp.series(
+	function (done) {
+		return del(dest).then(paths => done(), error => console.log(error.message));
+	},
+	function () {
+		return gulp.src('./scss-errors/!(_)*.scss')
+			.pipe(gulpSassMonster({}))
 			.pipe(gulp.dest('./tmp/'));
 	}
 ));
@@ -61,7 +69,7 @@ for (let preset in options) {
 		let map = config.sourceMap;
 		return gulp.src(src)
 			.pipe(iF(map, sourcemaps.init()))
-			.pipe(gulpSassMonster(config, true))
+			.pipe(gulpSassMonster(config))
 			.pipe(iF(map, sourcemaps.write(typeof map === 'string' ? map : false)))
 			.pipe(gulp.dest(taskDest));
 	});

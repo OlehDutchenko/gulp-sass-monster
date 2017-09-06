@@ -26,6 +26,7 @@ const lodash = require('lodash');
  * @param {string} file.extname - file extension
  * @param {Object} file.sourceMap - plugin source-map data
  * @returns {Object} options
+ * @sourceCode
  */
 function setupOptions (opts, file) {
 	const options = lodash.cloneDeep(opts);
@@ -57,6 +58,10 @@ function setupOptions (opts, file) {
 		delete options.sourceMap;
 		delete options.omitSourceMapUrl;
 		delete options.sourceMapContents;
+	}
+
+	if (typeof options.afterRender !== 'function') {
+		options.afterRender = false;
 	}
 
 	return options;
