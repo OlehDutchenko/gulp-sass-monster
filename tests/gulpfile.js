@@ -26,8 +26,10 @@ const options = require('./options');
 // ----------------------------------------
 
 const series = ['clear'];
-const dest = './gulp-results';
+const dest = './results-gulp';
 const src = './scss-examples/!(_)*.scss';
+const destSteroids = './results-steroids';
+const srcSteroids = './scss-steroids/*.scss';
 
 // ----------------------------------------
 // Tasks
@@ -39,12 +41,27 @@ gulp.task('clear', function (done) {
 
 gulp.task('tmp', gulp.series(
 	function (done) {
-		return del(dest).then(paths => done(), error => console.log(error.message));
+		return del('./tmp/').then(paths => done(), error => console.log(error.message));
 	},
 	function () {
 		return gulp.src(src)
-			.pipe(gulpSassMonster({}))
+			.pipe(gulpSassMonster().on('error', gulpSassMonster.logError))
 			.pipe(gulp.dest('./tmp/'));
+	}
+));
+
+gulp.task('steroids', gulp.series(
+	function (done) {
+		return del(destSteroids).then(paths => done(), error => console.log(error.message));
+	},
+	function () {
+		return gulp.src(srcSteroids)
+			.pipe(gulpSassMonster({
+				addVariables: {
+					fontFamily: 'sans-serif'
+				}
+			}).on('error', gulpSassMonster.logError))
+			.pipe(gulp.dest(destSteroids));
 	}
 ));
 
@@ -54,13 +71,16 @@ gulp.task('sass-errors', gulp.series(
 	},
 	function () {
 		return gulp.src('./scss-errors/!(_)*.scss')
-			.pipe(gulpSassMonster({}))
+			.pipe(gulpSassMonster().on('error', gulpSassMonster.logError))
 			.pipe(gulp.dest('./tmp/'));
 	}
 ));
 
 for (let preset in options) {
 	let config = options[preset];
+	delete config.afterRender;
+	delete config.addVariables;
+
 	let taskName = `preset-${preset}`;
 	let taskDest = `${dest}/${preset}`;
 	series.push(taskName);
@@ -69,7 +89,7 @@ for (let preset in options) {
 		let map = config.sourceMap;
 		return gulp.src(src)
 			.pipe(iF(map, sourcemaps.init()))
-			.pipe(gulpSassMonster(config))
+			.pipe(gulpSassMonster(config).on('error', gulpSassMonster.logError))
 			.pipe(iF(map, sourcemaps.write(typeof map === 'string' ? map : false)))
 			.pipe(gulp.dest(taskDest));
 	});

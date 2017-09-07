@@ -10,8 +10,9 @@ node_modules/
 
 # IDEA
 .idea/
-tests/gulp-results
-tests/node-results
+tests/results-gulp/
+tests/results-node/
+tests/results-steroids/
 
 # temp
 tmp/

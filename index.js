@@ -103,6 +103,17 @@ function gulpSassMonster (opts = {}, sync = false) {
  */
 gulpSassMonster.pluginName = pkg.name;
 
+/**
+ * Plugin name
+ * @type {string}
+ * @sourceCode
+ */
+gulpSassMonster.logError = function (error) {
+	var message = new gutil.PluginError(pkg.name, error.message).toString();
+	process.stderr.write(message + '\n');
+	this.emit('end');
+};
+
 // ----------------------------------------
 // Exports
 // ----------------------------------------

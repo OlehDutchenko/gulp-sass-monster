@@ -39,6 +39,10 @@ const applySourceMap = require('vinyl-sourcemaps-apply');
  * @sourceCode
  */
 function pushFile (file, result, options, cb) {
+	if (typeof options.afterRender === 'function') {
+		options.afterRender(result, file);
+	}
+
 	// Build Source Maps!
 	if (result.map) {
 		// Transform map into JSON

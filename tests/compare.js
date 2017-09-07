@@ -45,16 +45,16 @@ describe(chalk.white('compare results'), function () {
 		let mapPattern = /\/\*# sourceMappingURL=.*\*\/(\n)*/gi;
 
 		describe(chalk.yellow(`preset ${preset}\n`) + chalk.gray(showConfig(config)), function () {
-			const gulpResults = glob.sync(path.join(__dirname, 'gulp-results', preset, './*.css'));
-			const nodeResults = glob.sync(path.join(__dirname, 'node-results', preset, './*.css'));
+			const resultsGulp = glob.sync(path.join(__dirname, 'results-gulp', preset, './*.css'));
+			const resultsNode = glob.sync(path.join(__dirname, 'results-node', preset, './*.css'));
 
-			nodeResults.forEach((file, i) => {
+			resultsNode.forEach((file, i) => {
 				let filename = path.basename(file, '.css') + '.scss';
-				let nodeCss = fs.readFileSync(file).toString().replace(mapPattern, '');
-				let gulpCss = fs.readFileSync(gulpResults[i]).toString().replace(mapPattern, '');
+				let cssNode = fs.readFileSync(file).toString().replace(mapPattern, '');
+				let cssGulp = fs.readFileSync(resultsGulp[i]).toString().replace(mapPattern, '');
 
 				it(`${filename} - ${pkg.name} render should be same as node-sass render`, function () {
-					assert.strictEqual(gulpCss, nodeCss);
+					assert.strictEqual(cssGulp, cssNode);
 				});
 			});
 		});

@@ -24,7 +24,7 @@ const options = require('./options');
 // Private
 // ----------------------------------------
 
-const destPath = path.resolve(path.join(__dirname, './node-results'));
+const destPath = path.resolve(path.join(__dirname, './results-node'));
 const sassFiles = glob.sync(path.join(__dirname, './scss-examples/!(_)*.scss'));
 
 // ----------------------------------------
@@ -41,6 +41,9 @@ for (let preset in options) {
 		let filename = path.basename(file, '.scss');
 		let filepath = path.join(destPath, preset, filename + '.css');
 		let config = lodash.merge({}, options[preset], {file});
+		delete config.afterRender;
+		delete config.addVariables;
+		delete config.data;
 
 		delete config.data;
 		if (config.sourceMap) {

@@ -22,6 +22,7 @@ const lodash = require('lodash');
 /**
  * @param {Object} opts - user options
  * @param {Buffer} file - current file
+ * @param {Buffer} file.contents
  * @param {string} file.path - absolute file path
  * @param {string} file.extname - file extension
  * @param {Object} file.sourceMap - plugin source-map data
@@ -33,7 +34,7 @@ function setupOptions (opts, file) {
 
 	// set the file path for libsass
 	options.file = file.path;
-	delete options.data;
+	options.data = file.contents.toString();
 
 	// Ensure `indentedSyntax` is true if a `.sass` file
 	if (path.extname(file.path) === '.sass') {
@@ -60,8 +61,69 @@ function setupOptions (opts, file) {
 		delete options.sourceMapContents;
 	}
 
-	if (typeof options.afterRender !== 'function') {
-		options.afterRender = false;
+	if (options.addVariables) {
+		let vars = JSON.parse(JSON.stringify(options.addVariables));
+		let varsList = [];
+		let generated = '/* generated */ %s';
+
+		for (let key in vars) {
+			let value = vars[key];
+			let variable;
+
+			switch (typeof value) {
+				case 'object':
+					if (value === null) {
+						break;
+					}
+					let list = [];
+
+					if (Array.isArray(value)) { // create SASS list
+						value.forEach(val => {
+							if (typeof val === 'object') {
+								return false;
+							}
+							list.push(val);
+						});
+					} else { // create SASS map
+						for (let prop in value) {
+							let val = value[prop];
+							if (typeof val === 'object') {
+								return false;
+							}
+							list.push(prop + ': ' + val);
+						}
+					}
+
+					if (list.length) {
+						variable = `$${key}: (${list.join(', ')});`;
+					}
+					break;
+
+				default:
+					// example -> $var: 2rem;
+					variable = `$${key}: ${value};`;
+			}
+
+			if (variable) {
+				varsList.push(generated.replace(/%s/, variable));
+			}
+
+			if (varsList.length) {
+				let fileContent = options.data;
+				let charsetRegexp = /(@charset.+;)/i;
+				varsList = varsList.join('\n');
+
+				// if has charset
+				if (charsetRegexp.test(fileContent)) {
+					fileContent = fileContent.replace(charsetRegexp, (str, group) => `${group}\n${varsList}\n`);
+				} else {
+					fileContent = `${varsList}\n${fileContent}`;
+				}
+
+				// new content
+				options.data = fileContent;
+			}
+		}
 	}
 
 	return options;
