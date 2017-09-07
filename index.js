@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * > Gulp plugin for [node-sass](https://github.com/sass/node-sass) with steroids. The project is inspired by [gulp-sass](https://github.com/dlmanning/gulp-sass)
+ * > Gulp plugin for [node-sass](https://github.com/sass/node-sass) со стероидами. The project is a revised version of [gulp-sass](https://github.com/dlmanning/gulp-sass) and updated [gulp-sass-extended](https://github.com/dutchenkoOleg/gulp-sass-extended), which is no longer supported
  * @module
  * @author Oleg Dutchenko <dutchenko.o.dev@gmail.com>
  * @version 1.0.0
