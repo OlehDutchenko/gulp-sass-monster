@@ -1,6 +1,6 @@
 {
   "name": "gulp-sass-monster",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Gulp plugin for node-sass with steroids. The project is a revised version of gulp-sass and updated gulp-sass-extended",
   "main": "index.js",
   "scripts": {
@@ -36,10 +36,12 @@
   },
   "homepage": "https://github.com/dutchenkoOleg/gulp-sass-monster#readme",
   "dependencies": {
-    "gulp-not-supported-file": "^1.2.1",
-    "gulp-util": "^3.0.8",
+    "ansi-colors": "^1.0.1",
+    "gulp-not-supported-file": "^1.2.5",
     "lodash": "^4.17.4",
-    "node-sass": "^4.7.1",
+    "node-sass": "^4.7.2",
+    "plugin-error": "^0.1.2",
+    "replace-ext": "^1.0.0",
     "through2": "^2.0.3",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
@@ -47,7 +49,7 @@
     "assert": "^1.4.1",
     "del": "^3.0.0",
     "glob": "^7.1.2",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-jsdoc3": "^1.0.1",
     "gulp-mocha": "^4.3.1",

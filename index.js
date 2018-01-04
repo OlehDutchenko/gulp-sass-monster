@@ -4,7 +4,7 @@
  * > Gulp plugin for [node-sass](https://github.com/sass/node-sass) со стероидами. The project is a revised version of [gulp-sass](https://github.com/dlmanning/gulp-sass) and updated [gulp-sass-extended](https://github.com/dutchenkoOleg/gulp-sass-extended), which is no longer supported
  * @module
  * @author Oleg Dutchenko <dutchenko.o.dev@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 // ----------------------------------------
@@ -14,7 +14,7 @@
 // modules
 const sass = require('node-sass');
 const through2 = require('through2');
-const gutil = require('gulp-util');
+const PluginError = require('plugin-error');
 const notSupportedFile = require('gulp-not-supported-file');
 
 // data
@@ -38,7 +38,7 @@ const errorHandler = require('./utils/error-hadler');
  * @private
  * @sourceCode
  */
-const pluginError = (data, options) => new gutil.PluginError(pkg.name, data, options);
+const pluginError = (data, options) => new PluginError(pkg.name, data, options);
 
 // ----------------------------------------
 // Public
@@ -109,7 +109,7 @@ gulpSassMonster.pluginName = pkg.name;
  * @sourceCode
  */
 gulpSassMonster.logError = function (error) {
-	var message = new gutil.PluginError(pkg.name, error.message).toString();
+	let message = pluginError(error.message).toString();
 	process.stderr.write(message + '\n');
 	this.emit('end');
 };

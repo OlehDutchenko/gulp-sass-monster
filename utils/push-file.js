@@ -3,6 +3,8 @@
 /**
  * Описание модуля
  * @module
+ * @author Oleg Dutchenko <dutchenko.o.dev@gmail.com>
+ * @version 1.1.0
  */
 
 // ----------------------------------------
@@ -10,7 +12,7 @@
 // ----------------------------------------
 
 const path = require('path');
-const gutil = require('gulp-util');
+const replaceExt = require('replace-ext');
 const applySourceMap = require('vinyl-sourcemaps-apply');
 
 // ----------------------------------------
@@ -73,7 +75,7 @@ function pushFile (file, result, options, cb) {
 		});
 
 		// Replace the map file with the original file name (but new extension)
-		sassMap.file = gutil.replaceExtension(sassFileSrc, '.css');
+		sassMap.file = replaceExt(sassFileSrc, '.css');
 
 		// Apply the map
 		applySourceMap(file, sassMap);

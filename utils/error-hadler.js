@@ -3,6 +3,8 @@
 /**
  * Handles error message
  * @module
+ * @author Oleg Dutchenko <dutchenko.o.dev@gmail.com>
+ * @version 1.1.0
  */
 
 // ----------------------------------------
@@ -11,7 +13,8 @@
 
 // modules
 const path = require('path');
-const gutil = require('gulp-util');
+const colors = require('ansi-colors');
+const PluginError = require('plugin-error');
 
 // data
 const pkg = require('../package.json');
@@ -33,12 +36,12 @@ function errorHandler (error, file) {
 	let relativePath = path.relative(process.cwd(), filePath);
 
 	let msg = [
-		gutil.colors.underline(relativePath),
+		colors.underline(relativePath),
 		'',
 		error.formatted
 	].join('\n');
 
-	return new gutil.PluginError(pkg.name, msg);
+	return new PluginError(pkg.name, msg);
 }
 
 // ----------------------------------------
