@@ -1,6 +1,6 @@
 {
   "name": "gulp-sass-monster",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Gulp plugin for node-sass with steroids. The project is a revised version of gulp-sass and updated gulp-sass-extended",
   "main": "index.js",
   "scripts": {
