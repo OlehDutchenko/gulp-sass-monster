@@ -16,10 +16,10 @@ thumbs.db
 *.md
 
 # Workflow
-.idea
-tmp/
-docs/
-tests/
-examples/
-.travis.yml
-tests/gulpfile.js
+/.idea
+/tmp/
+/docs/
+/tests/
+/examples/
+/.travis.yml
+/package-lock.json

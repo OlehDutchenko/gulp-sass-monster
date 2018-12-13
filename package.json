@@ -38,8 +38,8 @@
   "dependencies": {
     "ansi-colors": "^1.0.1",
     "gulp-not-supported-file": "^1.2.5",
-    "lodash": "^4.17.4",
-    "node-sass": "^4.7.2",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
     "plugin-error": "^0.1.2",
     "replace-ext": "^1.0.0",
     "through2": "^2.0.3",
@@ -48,15 +48,15 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "del": "^3.0.0",
+    "eslint": "^5.10.0",
+    "eslint-config-wezom-relax": "^1.0.3",
     "glob": "^7.1.2",
     "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-jsdoc3": "^1.0.1",
-    "gulp-mocha": "^4.3.1",
-    "gulp-sourcemaps": "^2.6.1",
-    "happiness": "^10.0.2",
+    "gulp-mocha": "^6.0.0",
+    "gulp-sourcemaps": "^2.6.4",
     "jsdoc-simple-theme": "^1.2.6",
-    "snazzy": "^7.0.0",
     "yargs": "^8.0.2"
   }
 }
