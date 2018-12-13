@@ -38,15 +38,12 @@
 
 #### Стиль кода Javascript
 
-[![happiness][happiness-image]][happiness-url]
+[![Javascript Style Guide](https://raw.githubusercontent.com/WezomAgency/eslint-config-wezom-relax/master/assets/badge.jpg)](https://github.com/WezomAgency/eslint-config-wezom-relax)
 
-Этот проект использует [`happiness`][happiness-url] для поддержания стиля и согласованности кода.  
+Этот проект использует [`eslint-config-wezom-relax`](https://github.com/WezomAgency/eslint-config-wezom-relax) для поддержания стиля и согласованности кода.  
  ***Поэтому вам также нужно следовать этим стилям кода!*** 
  
-Запустите `npm run happiness` для проверки.
-
-[happiness-image]: https://cdn.rawgit.com/JedWatson/happiness/master/badge.svg
-[happiness-url]: https://github.com/JedWatson/happiness
+Запустите `npm run eslint` для проверки.
 
 #### Релизы
 

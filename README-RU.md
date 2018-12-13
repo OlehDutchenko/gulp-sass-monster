@@ -12,7 +12,7 @@
 
 > _Gulp плагин для [node-sass](https://github.com/sass/node-sass) со стероидами. Проект является переработанной версией [gulp-sass](https://github.com/dlmanning/gulp-sass) и обновлением [gulp-sass-extended](https://github.com/dutchenkoOleg/gulp-sass-extended), который больше не поддерживается_
 
-[![js happiness style](https://cdn.rawgit.com/JedWatson/happiness/master/badge.svg)](https://github.com/JedWatson/happiness)
+[![Javascript Style Guide](https://raw.githubusercontent.com/WezomAgency/eslint-config-wezom-relax/master/assets/badge.jpg)](https://github.com/WezomAgency/eslint-config-wezom-relax)
 
 ## Установка
 

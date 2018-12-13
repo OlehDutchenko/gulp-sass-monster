@@ -40,7 +40,7 @@ for (let preset in options) {
 	sassFiles.forEach(file => {
 		let filename = path.basename(file, '.scss');
 		let filepath = path.join(destPath, preset, filename + '.css');
-		let config = lodash.merge({}, options[preset], {file});
+		let config = lodash.merge({}, options[preset], { file });
 		delete config.afterRender;
 		delete config.addVariables;
 		delete config.data;

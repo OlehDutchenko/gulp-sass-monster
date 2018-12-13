@@ -12,7 +12,7 @@
 
 > _Gulp plugin for [node-sass](https://github.com/sass/node-sass) with steroids. The project is a revised version [gulp-sass](https://github.com/dlmanning/gulp-sass) and updated [gulp-sass-extended](https://github.com/dutchenkoOleg/gulp-sass-extended), which is no longer supported_
 
-[![js happiness style](https://cdn.rawgit.com/JedWatson/happiness/master/badge.svg)](https://github.com/JedWatson/happiness)
+[![Javascript Style Guide](https://raw.githubusercontent.com/WezomAgency/eslint-config-wezom-relax/master/assets/badge.jpg)](https://github.com/WezomAgency/eslint-config-wezom-relax)
 
 ## Installation
 

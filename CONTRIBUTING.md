@@ -42,16 +42,13 @@ There are a few basic ground-rules for contributors:
 
 #### Javascript Code Style
 
-[![happiness][happiness-image]][happiness-url]
+[![Javascript Style Guide](https://raw.githubusercontent.com/WezomAgency/eslint-config-wezom-relax/master/assets/badge.jpg)](https://github.com/WezomAgency/eslint-config-wezom-relax)
 
-This repository uses [`happiness`][happiness-url] to maintain code style and consistency,
+This repository uses [`eslint-config-wezom-relax`](https://github.com/WezomAgency/eslint-config-wezom-relax) to maintain code style and consistency,
 and to avoid style arguments.  
  ***So you also need to follow this code styles!*** 
  
- Run `npm run happiness` for check outs.
-
-[happiness-image]: https://cdn.rawgit.com/JedWatson/happiness/master/badge.svg
-[happiness-url]: https://github.com/JedWatson/happiness
+ Run `npm run eslint` for check outs.
 
 #### Releases
 

@@ -98,7 +98,7 @@ for (let preset in options) {
 gulp.task('sass', gulp.series(...series));
 
 gulp.task('compare-results', function () {
-	return gulp.src('./compare.js', {read: false})
+	return gulp.src('./compare.js', { read: false })
 		.pipe(mocha({
 			reporter: 'spec'
 		}))
